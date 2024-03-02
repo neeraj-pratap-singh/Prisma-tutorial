@@ -3,4 +3,8 @@ const app = express();
 
 app.use(express());
 
-app.listen(3001, () => console.log(`Server running at port ${3001}`));
+app.get('/', (req, res) => {
+    res.send('Prisma Tutorial');
+  });
+
+app.listen(3000, () => console.log(`Server running at port ${3000}`));
