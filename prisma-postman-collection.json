@@ -1,0 +1,122 @@
+{
+    "info": {
+      "_postman_id": "a1b2c3d4-e5f6-7890-g1h2-i345j67890k1",
+      "name": "User CRUD API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Create User",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"age\": 30\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "http://localhost:3000/users",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "users"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Get All Users",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:3000/users",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "users"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Get User By ID",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:3000/users/1",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "users",
+              "1"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Update User",
+        "request": {
+          "method": "PUT",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"age\": 25\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "http://localhost:3000/users/1",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "users",
+              "1"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Delete User",
+        "request": {
+          "method": "DELETE",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:3000/users/1",
+            "protocol": "http",
+            "host": [
+              "localhost"
+            ],
+            "port": "3000",
+            "path": [
+              "users",
+              "1"
+            ]
+          }
+        }
+      }
+    ],
+    "protocolProfileBehavior": {}
+  }
+  
