@@ -1,17 +1,88 @@
-generator client {
-    provider = "prisma-client-js"
-}
-
+// Define the datasource
 datasource db {
-    provider = "mysql"
-    url = env("DATABASE_URL")
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
-model user {
-    id Int @id @default(autoincrement())
-    firstName String
-    lastName String
-    age Int
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+// Define the Prisma client generator
+generator client {
+  provider = "prisma-client-js"
 }
+
+// Food Items (Meals) Table
+model FoodItem {
+  id               Int          @id @default(autoincrement())
+  subscriptionId   Int
+  name             String
+  placeholderImage String
+  shortDescription String
+  type             String
+  varieties        Variety[]
+  subscription     Subscription @relation(fields: [subscriptionId], references: [id])
+
+  @@map("FoodItems")
+}
+
+// Varieties Table
+model Variety {
+  id          Int      @id @default(autoincrement())
+  foodItemId  Int
+  varietyName String
+  proteins    Float
+  fats        Float
+  carbs       Float
+  fibre       Float
+  calories    Int
+  foodItem    FoodItem @relation(fields: [foodItemId], references: [id])
+
+  @@map("Varieties")
+}
+
+// Subscriptions Table
+model Subscription {
+  id               Int        @id @default(autoincrement())
+  name             String
+  placeholderImage String
+  durationOptions  String
+  foodItems        FoodItem[]
+  Goal             Goal?      @relation(fields: [goalId], references: [id])
+  goalId           Int?
+  Order            Order[]
+
+  @@map("Subscriptions")
+}
+
+// Goals Table
+model Goal {
+  id               Int            @id @default(autoincrement())
+  name             String
+  placeholderImage String
+  subscriptions    Subscription[]
+
+  @@map("Goals")
+}
+
+// Additional Considerations - Example User Table
+model User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  email    String  @unique
+  orders   Order[]
+
+  @@map("Users")
+}
+
+// Order Table
+model Order {
+  id             Int          @id @default(autoincrement())
+  userId         Int
+  subscriptionId Int
+  startDate      DateTime
+  endDate        DateTime
+  user           User         @relation(fields: [userId], references: [id])
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id])
+
+  @@map("Orders")
+}
+
+// Payment and Feedback tables would follow a similar pattern.
